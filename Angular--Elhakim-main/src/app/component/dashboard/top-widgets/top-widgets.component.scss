@@ -1,0 +1,70 @@
+.widget-container {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+  .widget {
+    position: relative;
+    width: 23%;
+    height: 175px;
+    background-color: #fff;
+    color: #0b0b0b;
+    border-radius: 15px 15px 0px 0px;
+    // margin: 2px;
+    box-shadow: -1px 6px 20px 0px #939393;
+    display: flex;
+
+    .icon {
+      font-size: 50px;
+    }
+
+    .lable {
+      font-weight: bold;
+    }
+  }
+  :nth-child(1) .icon {
+    background-color: purple;
+    border-radius: 20px;
+  }
+  :nth-child(2) .icon {
+    background-color: yellow;
+  }
+  :nth-child(3) .icon {
+    background-color: green;
+  }
+  :nth-child(4) .icon {
+    background-color: red;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .col-md-6 {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (min-width: 577px) and (max-width: 768px) {
+  .col-md-6 {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .col-md-6 {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+  .col-md-6 {
+    width: 48% !important;
+  }
+}
+
+@media (min-width: 1201px) {
+  /* Styles for devices with a minimum width of 1201px (e.g., large desktop screens) */
+}
+.chart {
+  width: 100%;
+}

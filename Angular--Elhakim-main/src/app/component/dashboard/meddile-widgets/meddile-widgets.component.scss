@@ -1,0 +1,10 @@
+.action {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: rgba(180, 180, 180, 0.657);
+  }
+}

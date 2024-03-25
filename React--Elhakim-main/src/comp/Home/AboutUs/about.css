@@ -1,0 +1,25 @@
+.featured-service {
+  margin-bottom: 160px;
+}
+
+.featured-img {
+  height: 500px;
+  width: 90%;
+}
+
+.button-primary {
+  background-image: linear-gradient(75deg, #19d3ae, #0fcfec);
+  border: none;
+  border-color: none;
+  color: white;
+  font-weight: 600;
+  padding: 8px 25px;
+  border-radius: 3px;
+  outline: 0 !important;
+}
+
+.button-primary:hover {
+  text-decoration: none;
+  background-image: linear-gradient(75deg, #0fcfec, #19d3ae);
+  color: white;
+}

@@ -1,0 +1,47 @@
+<nz-layout trueayout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <img src="https://www.einfosoft.com/templates/admin/cliniva/source/light/assets/images/logo.png" alt="logo" />
+      <h1>ُElhakim</h1>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      @for (item of navbarData; track $index) {
+
+
+      <li nz-menu-item [routerLink]="[item.routeLink]">
+        <span nz-icon nzType="{{item.icon }}"></span>
+        <span>{{ item.label }}</span>
+      </li>
+
+
+
+      }
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <div>
+          <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+          </span>
+        </div>
+        <div class="me-4">
+          <nz-avatar nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" nzIcon="user"></nz-avatar>
+        </div>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item>profile</li>
+            <li nz-menu-item >logout</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

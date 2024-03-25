@@ -1,0 +1,9 @@
+.action {
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+  padding: 5px;
+  &:hover {
+    background-color: rgba(180, 180, 180, 0.657);
+  }
+}

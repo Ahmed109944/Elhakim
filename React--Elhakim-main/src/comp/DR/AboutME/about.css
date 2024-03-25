@@ -1,0 +1,17 @@
+.experience-list::before {
+  background: #ddd;
+  bottom: 0;
+  content: "";
+  left: 8px;
+  position: absolute;
+  top: 8px;
+  width: 2px;
+}
+
+.circle-before {
+  background-color: rgba(32, 192, 243, 0.2);
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  border: 2px solid #20c0f3;
+}

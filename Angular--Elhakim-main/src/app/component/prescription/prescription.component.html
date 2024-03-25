@@ -1,0 +1,126 @@
+<div class="container" id="prescription">
+
+  <img src="../../../assets/image-124.jpg" class="coverImage">
+
+
+  <div class="sidebar-logo">
+    <img class="coverImage" src="../../../assets/logo.png" alt="logo" />
+    <h1>ElHakim</h1>
+  </div>
+
+  <div class="child-container">
+
+    <h2 class="my-3">Some Details </h2>
+    <div class="row mt-3" style="background-color: #001529;">
+      <div class="col-md-3 p-2 text-white">
+        <h4>Doctor Name</h4>
+      </div>
+
+      <div class="col-md-3 p-2 text-white" style="border-left: 1px solid white;">
+        <h4>Patient Name</h4>
+      </div>
+      <div class="col-md-2 p-2 text-white" style="border-left: 1px solid white;">
+        <h4>Patient Phone</h4>
+      </div>
+
+      <div class="col-md-4 p-2 text-white" style="border-left: 1px solid white;">
+        <h4>Patient Email</h4>
+      </div>
+
+
+    </div>
+    <div class="row">
+      <div class="col-md-3 p-2 text-white" style="border: 1px solid #001529;">
+        <h4 class="text-dark">{{prescription[0].doctor}}</h4>
+      </div>
+      <div class="col-md-3 p-2 text-white" style="border: 1px solid #001529;">
+        <h4 class="text-dark">{{prescription[0].name}}</h4>
+      </div>
+      <div class="col-md-2 p-2 text-white" style="border: 1px solid #001529;">
+        <h4 class="text-dark">{{prescription[0].mobile}}</h4>
+      </div>
+
+      <div class="col-md-4 p-2 text-white" style="border: 1px solid #001529;">
+        <h4 class="text-dark">{{prescription[0].email}}</h4>
+      </div>
+
+
+    </div>
+
+
+
+
+    <div class="row mt-3" style="background-color: #001529;">
+      <div class="col-md-3 p-2 text-white">
+        <h4>Patient Gender</h4>
+      </div>
+      <div class="col-md-3 p-2 text-white" style="border-left: 1px solid white;">
+        <h4>Appointment Date</h4>
+      </div>
+      <div class="col-md-3 p-2 text-white" style="border-left: 1px solid white;">
+        <h4>Appointment Time</h4>
+      </div>
+      <div class="col-md-3 p-2 text-white" style="border-left: 1px solid white;">
+        <h4>Patient Age</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 p-2 text-white" style="border: 1px solid #001529;">
+        <h4 class="text-dark">{{prescription[0].gender}}</h4>
+      </div>
+      <div class="col-md-3 p-2 text-white" style="border: 1px solid #001529;">
+        <h4 class="text-dark">{{prescription[0].date}}</h4>
+      </div>
+      <div class="col-md-3 p-2 text-white" style="border: 1px solid #001529;">
+        <h4 class="text-dark">{{prescription[0].time}}</h4>
+      </div>
+      <div class="col-md-3 p-2 text-white" style="border: 1px solid #001529;">
+        <h4 class="text-dark">{{prescription.patientAge}}</h4>
+      </div>
+
+    </div>
+
+    <h2 class="my-3">Symptoms</h2>
+    <div class=" row border border-dark border-1 p-3 my-3" style="line-height: 30px;">
+      {{prescription[0].report.symptoms}}</div>
+
+
+    <div class="row" style="background-color:  #001529;">
+      <div class="col-md-4 p-2 text-white border border-left-light border-1">
+        <h4>Medicine</h4>
+      </div>
+      <div class="col-md-4 p-2 text-white border border-left-light border-1">
+        <h4>Dosage</h4>
+      </div>
+      <div class="col-md-4 p-2 text-white border border-left-light border-1">
+        <h4>Instructions</h4>
+      </div>
+    </div>
+    @for(item of prescription[0].report.medicines; track prescription[0].id){
+    <div class="row">
+      <div class="col-md-4 p-2 text-dark" style="border: 1px solid #001529;">{{item.name}}</div>
+      <div class="col-md-4 p-2 text-dark" style="border: 1px solid #001529;">{{item.dosage}}</div>
+      <div class="col-md-4 p-2 text-dark" style="border: 1px solid #001529;">{{item.instructions}}</div>
+    </div>
+    }
+
+
+
+    <h2 class="my-3">Prescription</h2>
+    <div class="row border border-1 border-dark p-2 my-3">{{prescription[0].report.prescription}}</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6 "><button class="btn btn-outline-danger p-2" [routerLink]="['/doctordashboard']">Go Back</button>
+  </div>
+  <div class="col-6">
+    <div class="row">
+      <div class="col-6"><span style="display: none;margin-inline-start: 120%;" class="p-2">Loading...</span></div>
+      <div class="col-6"><button class="btn btn-outline-success p-2" (click)="generatePDF()"
+          style="margin-inline-start: 70%; position: relative;"><i class="spinner-border float-end fs-2 loader"
+            id="loader"
+            style="display: none; position: absolute; top: 5px; left: -40px;"></i><span>Download</span></button></div>
+    </div>
+  </div>
+</div>

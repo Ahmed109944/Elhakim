@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row gx-4">
+    @for(doctor of listOfDoctors; track $index){
+    <div class="col-12 col-lg-6 col-xl-4 gy-4 card-shadow">
+      <div class="card">
+        <h4 class="pt-4" style="text-align: center">{{doctor.name}}</h4>
+        <p style="text-align: center">{{doctor.specialization}}</p>
+
+        <div class="user">
+          <img id="userAvatar" [src]="doctor.image" width="100px" height="100px" />
+        </div>
+        <div class="accountStats">
+          <div class="detailedAddress">
+            <h6 class="pt-5 mt-4">{{doctor.address}}</h6>
+            <h6 class="py-2 pb-5">{{doctor.joiningDate}}</h6>
+            <h6 class="py-2 pb-3 d-flex justify-content-center">
+              <span>{{doctor.mobile}} </span> <span class="ms-2" nz-icon nzType="phone" nzTheme="outline"></span>
+            </h6>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    }
+  </div>
+</div>

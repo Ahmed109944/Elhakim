@@ -1,0 +1,36 @@
+.signup-btn {
+  z-index: 1;
+  position: relative;
+
+  overflow: hidden;
+  transition: color 2s ease-in-out;
+}
+
+.signup-btn::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  background-color: #50757b;
+  transform-origin: center;
+  transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
+  transition: transform 0.45s ease-in-out;
+}
+
+.signup-btn:hover {
+  cursor: pointer;
+  color: #fffdfd;
+}
+
+.signup-btn:hover::before {
+  transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
+}
+@media (min-width: 1320px) {
+  .container-signup {
+    max-width: 100rem !important;
+  }
+}

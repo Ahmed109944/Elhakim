@@ -1,0 +1,159 @@
+<div class="  d-flex justify-content-between" style="height: 3rem; background-color: #96abab;">
+
+
+  <input type="text" class="form-control  m-2 w-25 " [(ngModel)]="searchText" (keyup)="search()" id=" title"
+    placeholder="Search" />
+
+  <div class=" p-1 me-2">
+    <button [ngClass]="{ 'text-white btn': true , }" (click)="delete()" [hidden]=" setOfCheckedId.size ==0">
+      <span nz-icon nzType="delete" nzTheme="fill" class="bg-danger icon rounded-circle p-2"></span></button>
+    <button [ngClass]="{ 'text-white  btn  ': true , }" (click)="addAppoi()"> <span nz-icon nzType="plus"
+        nzTheme="outline" class="bg-primary text-white icon rounded-circle p-2 "></span></button>
+
+  </div>
+</div>
+<div class="table-responsive bg-white">
+  <nz-table [nzTitle]="'Appointments'" style=" overflow: auto;" #rowSelectionTable nzShowSizeChanger [nzData]="
+filteredListOfData.length > 0 ? filteredListOfData : listOfData"
+    (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" nzShowFilter>
+    <thead>
+      <tr>
+        <th [(nzChecked)]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Mobile</th>
+        <th>Doctor</th>
+        <th>Injury/Condition </th>
+        <th>Actions</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      @for (data of rowSelectionTable.data; track $index) {
+
+      <tr #rowAppoin>
+        <td [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
+        <td>
+          <img style="width:2rem ;" src="../../../assets/avatar.png" alt="images">
+        </td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.gender }}</td>
+        <td>{{ data.date | date:"shortDate"}}</td>
+        <td>{{ data.time }}</td>
+        <td>{{ data.mobile }}</td>
+        <td>{{ data.doctor }}</td>
+        <td>{{ data.injury }}</td>
+        <td class=" bg-white"><span class="text-danger action" nz-icon nzType="delete" nzTheme="outline"
+            (click)="showDeleteConfirm(data.id)"></span>
+          <span (click)="showEdit(data.id)" class="text-primary action" nz-icon nzType="edit" nzTheme="outline"></span>
+        </td>
+
+      </tr>
+      }
+    </tbody>
+  </nz-table>
+</div>
+
+<ng-template #form>
+  <div class="container-fluid px-1  mx-auto" style="width: max-content;">
+    <div class="row d-flex justify-content-center">
+      <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center" style="width: auto;">
+
+
+        <div class="card">
+          <h3>Appointement</h3>
+
+          <form class="form-card" #appoinForm="ngForm">
+            <div class="row justify-content-between text-left">
+              <div class="form-group col-sm-6 flex-column d-flex">
+                <label class="form-control-label px-3">First
+                  name<span class="text-danger"> *</span></label>
+
+                <input [(ngModel)]="appontemint.name" #name="ngModel" type="text" id="fname" name="fname" required
+                  placeholder="Enter your first name">
+              </div>
+              <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Email<span
+                    class="text-danger"> *</span></label>
+                <input [(ngModel)]="appontemint.email" #email="ngModel" name="email" required type="email"
+                  pattern="[^@\s]+@[^@\s]+\.[^@\s]+" id="email" placeholder="email" />
+              </div>
+            </div>
+            <div class="row justify-content-between text-left">
+
+              <div class="form-group col-sm-6 flex-column d-flex">
+                <label class="form-control-label px-3">Phone
+                  number<span class="text-danger"> *</span></label>
+
+                <input [(ngModel)]="appontemint.mobile" #mobile="ngModel" required pattern="^01(0|1|2|5)[0-9]{8}$"
+                  type="text" id="mobile" name="mobile" placeholder="">
+
+              </div>
+              <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Gender
+                  <span class="text-danger"> *</span></label>
+
+                <select [(ngModel)]="appontemint.gender" id="gender" name="gender" class="form-control mt-1 p-2"
+                  required="required">
+                  <option value="" selected disabled>--Select Your Gender--</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+
+                </select>
+
+              </div>
+            </div>
+            <div class="row justify-content-between text-left">
+              <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Date<span
+                    class="text-danger"> *</span></label> <input required [(ngModel)]="appontemint.date" #date="ngModel"
+                  type="date" id="date" name="date"> </div>
+              <div class="form-group col-sm-6 flex-column d-flex">
+                <label class="form-control-label px-3">
+                  Time<span class="text-danger"> *</span></label>
+
+                <input [(ngModel)]="appontemint.time" #time="ngModel" type="text" id="time" name="time" required
+                  placeholder="Enter your time">
+              </div>
+            </div>
+            <div class="row justify-content-between text-left">
+              <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Doctor<span
+                    class="text-danger"> *</span></label> <input required [(ngModel)]="appontemint.doctor"
+                  #doctor="ngModel" type="
+                  text" id="doctor" name="doctor"> </div>
+              <div class="form-group col-sm-6 flex-column d-flex">
+                <label class="form-control-label px-3">
+                  injury<span class="text-danger"> *</span></label>
+
+                <input [(ngModel)]="appontemint.injury" #injury="ngModel" type="text" id="injury" name="injury" required
+                  placeholder="Enter your Inurjy">
+              </div>
+            </div>
+
+            <div class="d-grid gap-2">
+              @if (!editAppotBtn) {
+              <button type="button" [disabled]="appoinForm.invalid" (click)="addToAppoments(appoinForm)"
+                class="btn btn-primary">
+                Confirm
+              </button>}
+              @else {
+              <button type="button" [disabled]="appoinForm.invalid" (click)="updateAppoments(appoinForm)"
+                class="btn btn-primary">
+                Update
+              </button>
+
+              }
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</ng-template>

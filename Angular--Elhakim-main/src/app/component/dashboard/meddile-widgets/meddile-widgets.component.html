@@ -1,0 +1,75 @@
+<div class=" col-lg-12 d-flex mt-3 ">
+  <div class="  me-3  p-2 rounded h-300  " style=" width: 50%; height: 200px; background-color: rgb(255, 255, 255);">
+    <canvas width="100vw" id="chart-survy" baseChart [datasets]="data" [labels]="labels" [options]="chartOptions"
+      type="line"></canvas>
+  </div>
+  <div class=" p-2 rounded h-300  " style=" height: 200px; width: 50%;  background-color: rgb(255, 255, 255);">
+    <canvas id="chart-survy" baseChart [datasets]="dataDisease" [labels]="labelsDisease" [options]="chartOptionsDisease"
+      type="bar"></canvas>
+  </div>
+</div>
+
+<div class=" row mt-4 ">
+  <div class="  col-lg-8   p-2    ">
+    <div class="table-responsive bg-white rounded h-300 ">
+      <h4 class="text-secondary p-2">Booked Appointment</h4>
+      <table class="table rounded ">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Patient Name </th>
+            <th scope="col">Assigned Doctor </th>
+            <th scope="col">Date</th>
+            <th scope="col">Diseases</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of [1,2,3,4,5]; track $index) {
+          <tr>
+            <th>{{item}}</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>{{dateNow | date:'longDate'}}</td>
+            <td><button type="button" class="btn btn-outline-warning" disabled>fever</button></td>
+
+
+            <td><span class="text-danger action" nz-icon nzType="delete" nzTheme="outline"></span>
+              <span class="ms-2 text-primary action" nz-icon nzType="edit" nzTheme="outline"></span>
+            </td>
+          </tr>
+
+          }
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class=" col-lg-4 p-2   bg-gray ">
+    <div class="table-responsive bg-white h-300 rounded">
+      <h4 class="text-secondary p-2">Doctor List</h4>
+      <table class="table ">
+        <thead>
+          <tr class="text-center">
+            <th scope="col">#</th>
+            <th scope="col">Doctor Name </th>
+            <th scope="col">Status </th>
+
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of [1,2,3,4,5]; track $index) {
+          <tr class="text-center">
+            <th>{{item}}</th>
+            <td>Mark</td>
+            <td><span class="btn btn-outline-success">avilable</span></td>
+
+          </tr>
+
+          }
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

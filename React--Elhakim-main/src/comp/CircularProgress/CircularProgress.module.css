@@ -1,0 +1,10 @@
+.circleBackground {
+  fill: none;
+  stroke: #ddd;
+}
+.progressBackground {
+  fill: none;
+
+  /* stroke-linecap: round;
+  stroke-linejoin: round; */
+}

@@ -1,0 +1,35 @@
+<div class="row p-3">
+  
+  <div class="p-2 rounded col-md-6 gy-2" style="background-color: rgb(255, 255, 255);">
+    <h4 class="text-secondary p-2">Doctor List</h4>
+    <div class="table-responsive" style="height: 400px; overflow-y: auto;">
+    <table class="table table-hover">
+      <thead>
+        <tr class="">
+          <th scope="col">#</th>
+          <th scope="col">Doctor Name </th>
+          <th scope="col">Status </th>
+
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of doctorList; track $index) {
+        <tr class="">
+          <th><img [src]="item.image" alt="image" style="display: block; height: 50px; width: 50px; border: 1px solid #ccc; border-radius: 5px;"/></th>
+          <td>{{item.name}}</td>
+          <td><span class="btn btn-outline-success">{{item.status}}</span></td>
+
+        </tr>
+
+        }
+
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <div class="rounded col-md-6  p-2" 
+>
+  
+  <canvas baseChart [type]="'bar'" [data]="data" [options]="options" style="background-color: white;" class="rounded p-3">Number Of Patients</canvas></div>
+</div>
+

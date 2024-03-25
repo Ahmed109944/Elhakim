@@ -1,0 +1,144 @@
+<div class="  d-flex justify-content-between" style="height: 3rem; background-color: #96abab;">
+
+
+  <input type="text" class="form-control  m-2 w-25 " [(ngModel)]="searchText" (keyup)="search()" id=" title"
+    placeholder="Search" />
+
+  <div class=" p-1 me-2">
+    <button [ngClass]="{ 'text-white btn': true , }" (click)="delete()" [hidden]=" setOfCheckedId.size ==0">
+      <span nz-icon nzType="delete" nzTheme="fill" class="bg-danger icon rounded-circle p-2"></span></button>
+    <button [ngClass]="{ 'text-white  btn  ': true , }" (click)="addDoctor()"> <span nz-icon nzType="plus"
+        nzTheme="outline" class="bg-primary text-white icon rounded-circle p-2 "></span></button>
+
+  </div>
+</div>
+
+<nz-table [nzTitle]="'Doctors'" [nzLoading]="listOfData.length == 0" style="overflow: auto;" #rowSelectionTable
+  nzShowSizeChanger [nzData]="
+filteredListOfData.length > 0 ? filteredListOfData : listOfData"
+  (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" nzShowFilter>
+  <thead>
+
+    <tr>
+      <th [(nzChecked)]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Email</th>
+
+
+      <th>Specialization</th>
+      <th>Degree</th>
+      <th>Mobile</th>
+      <th>Date</th>
+
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (data of rowSelectionTable.data; track $index) {
+
+    <tr #rowAppoin>
+      <td [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
+      <td>
+        <img style="width:2rem ;" src="../../../assets/avatar.png" alt="image">
+      </td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.email }}</td>
+      <td>{{ data.specialization }}</td>
+      <td>{{ data.degree }}</td>
+      <td>{{ data.mobile }}</td>
+      <td>{{ data.joiningDate | date:"shortDate"}}</td>
+
+      <td class=""><span (click)="showDeleteConfirm(data.id)" class="text-danger action" nz-icon nzType="delete"
+          nzTheme="outline"></span>
+        <span (click)="editDoctor(data.id)" class="text-primary action" nz-icon nzType="edit" nzTheme="outline"></span>
+      </td>
+
+    </tr>
+    }
+  </tbody>
+</nz-table>
+
+<ng-template #form>
+  <div class="container-fluid px-1  mx-auto" style="width: max-content;">
+    <div class="row d-flex justify-content-center">
+      <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center" style="width: auto;">
+
+
+        <div class="card">
+          <h3>Doctor</h3>
+
+          <form class="form-card" #DRForm="ngForm">
+            <div class="row justify-content-between text-left">
+              <div class="form-group col-sm-6 flex-column d-flex">
+                <label class="form-control-label px-3">
+                  Name<span class="text-danger"> *</span></label>
+
+                <input [(ngModel)]="doctorInfo.name" #name="ngModel" type="text" id="fname" name="fname" required
+                  placeholder="Enter your first name">
+              </div>
+              <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Email<span
+                    class="text-danger"> *</span></label>
+                <input [(ngModel)]="doctorInfo.email" #email="ngModel" name="email" required type="email"
+                  pattern="[^@\s]+@[^@\s]+\.[^@\s]+" id="email" placeholder="email" />
+              </div>
+            </div>
+            <div class="row justify-content-between text-left">
+
+              <div class="form-group col-sm-6 flex-column d-flex">
+                <label class="form-control-label px-3">Phone
+                  number<span class="text-danger"> *</span></label>
+
+                <input [(ngModel)]="doctorInfo.mobile" #mobile="ngModel" required pattern="^01(0|1|2|5)[0-9]{8}$"
+                  type="text" id="mobile" name="mobile" placeholder="">
+
+              </div>
+              <div class="form-group col-sm-6 flex-column d-flex">
+                <label class="form-control-label px-3">
+                  Joining Date<span class="text-danger"> *</span></label>
+
+                <input [(ngModel)]="doctorInfo.joiningDate" #joiningDate="ngModel" required type="date" id="joiningDate"
+                  name="joiningDate" placeholder="">
+
+              </div>
+            </div>
+            <div class="row justify-content-between text-left">
+              <div class="form-group col-sm-6 flex-column d-flex"> <label
+                  class="form-control-label px-3">Specialization<span class="text-danger"> *</span></label> <input
+                  required [(ngModel)]="doctorInfo.specialization" placeholder="one" #specialization="ngModel"
+                  type="text" id="specialization" name="specialization">
+              </div>
+              <div class="form-group col-sm-6 flex-column d-flex">
+                <label class="form-control-label px-3">
+                  Degree<span class="text-danger"> *</span></label>
+
+                <input [(ngModel)]="doctorInfo.degree" #degree="ngModel" type="text" id="degree" name="degree" required
+                  placeholder="BHMS">
+              </div>
+            </div>
+
+
+            <div class="d-grid gap-2 mt-2">
+              @if (!editDRBtn) {
+              <button (click)="confirmAddDoctor(DRForm)" type="button" [disabled]="DRForm.invalid"
+                class="btn btn-primary">
+                Confirm
+              </button>}
+              @else {
+              <button type="button" (click)="updateDoctor(DRForm)" [disabled]="DRForm.invalid" class="btn btn-primary">
+                Update
+              </button>
+
+              }
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</ng-template>

@@ -1,0 +1,5 @@
+.top-services {
+  background-image: url("/src/assets/chairBg.png");
+  background-size: cover;
+ filter: contrast();
+}

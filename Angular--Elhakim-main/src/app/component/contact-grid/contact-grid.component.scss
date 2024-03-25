@@ -1,0 +1,62 @@
+.account-container {
+  padding: 0px;
+}
+.card {
+  border-radius: 5px;
+  box-shadow: 2px 5px 10px #ccc;
+  color: white;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+}
+.card-shadow {
+  box-shadow: 2px 5px 10px #ccc;
+}
+.user {
+  display: flex;
+  //align-items: center;
+  justify-content: center;
+}
+#userAvatar {
+  border-radius: 50%;
+  border: 3px solid #fff;
+  position: relative;
+  bottom: -50px;
+  object-fit: cover;
+  box-shadow: 2px 5px 10px #ccc;
+}
+
+.accountStats {
+  background-color: white;
+  color: black;
+  text-align: center;
+  border-radius: 0px 0px 5px 5px;
+}
+.read {
+  background-color: #0093e9;
+}
+
+// .top-div {
+//   padding-top: 10px;
+//   padding-bottom: 80px;
+//   text-align: center;
+//   color: white;
+//   background-image: linear-gradient(
+//     to right,
+//     rgba(84, 212, 228, 1),
+//     rgba(68, 36, 164, 1)
+//   );
+// }
+// .profile-container {
+//   position: relative;
+// }
+// .image {
+//   width: 130px;
+//   height: 130px;
+//   display: block;
+//   border-radius: 50%;
+//   border: 5px solid white;
+//   position: absolute;
+
+//   top: 50%;
+//   left: 35%;
+//   object-fit: cover;
+// }

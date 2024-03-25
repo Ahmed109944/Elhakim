@@ -1,0 +1,98 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Appointment Details" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+
+    <div style="background-color: #F1EFEF; border-radius: 5px;" class="p-2">
+      <h3><img [src]="appointmentData.appointment.image"
+          style="display: block; height: 100; width: 100px; border-radius: 5px; border: 1px solid #ddd;" /></h3>
+      <h3 class="detail">Patient Name : {{appointmentData.appointment.name}}</h3>
+      <h3 class="detail">Last Visit : {{appointmentData.lastVisit}}</h3>
+      <h3 class="detail">Appointment Date : {{appointmentData.appointment.date}}</h3>
+      <h3 class="detail">Appointment Time : {{appointmentData.appointment.time}}</h3>
+      <h3 class="detail">Patient Email : {{appointmentData.appointment.email}}</h3>
+      <h3 class="detail">Injury : {{appointmentData.appointment.injury}}</h3>
+      <h3 class="detail">Gender : {{appointmentData.appointment.gender}}</h3>
+    </div>
+
+  </ng-container>
+</nz-modal>
+<div class="row p-2">
+  <div>
+    <div class="p-2 rounded h-300 bg-white" style="background-color: rgba(255, 255, 255, 0.519)">
+      <h4 class="text-secondary p-2">Today's Appointment</h4>
+      <div class="table-responsive" style="height: 350px; overflow-y: auto;">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col" class="text-secondary">#</th>
+              <th scope="col" class="text-secondary">
+                Patient Name
+              </th>
+
+
+              <th scope="col" class="text-secondary">
+                Last Visit
+              </th>
+              <th scope="col" class="text-secondary">Gender</th>
+              <th scope="col" class="text-secondary">Disease</th>
+              <th scope="col" class="text-secondary">Report</th>
+              <th scope="col" class="text-secondary">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of
+            todayAppointments;
+            track $index) {
+            <tr class="p-2">
+              <th><img [src]="item.appointment.image"
+                  style="height:50px;width: 50px; border-radius: 5px; border: 1px solid #ccc;" /></th>
+              <td>{{item.appointment.name}}</td>
+
+              <td>{{item.lastVisit}}</td>
+              <td>{{item.appointment.gender}}</td>
+
+              <td><button class="btn btn-outline-danger">Fever</button></td>
+              <td><span class="report" nz-icon nzType="file-pdf" nzTheme="outline"
+                  (click)="navigateToTarget(item.appointment.id)" [routerLink]="['/prescription']"></span></td>
+              <td>
+                <button type="button" class="btn btn-outline-primary" (click)="showModal(item)">
+                  Details
+                </button>
+              </td>
+            </tr>
+
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
